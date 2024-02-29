@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 // check for cors
 const cors = require("cors");
 const { userPost, userGet } = require('./controllers/userController');
+const { playlistGet,  playlistPost,  playlistPatch,  playlistDelete} = require('./controllers/playlistController');
 app.use(cors({
   domains: '*',
   methods: "*"
@@ -20,9 +21,11 @@ app.use(cors({
 // listen to the task request
 app.get("/api/users/",userGet);
 app.post("/api/users", userPost);
-// app.patch("/api/careers", careerPatch);
-// app.put("/api/careers", careerPatch);
-// app.delete("/api/careers", careerDelete);
+
+app.get("/api/playlists/",playlistGet);
+app.post("/api/playlists", playlistPost);
+app.patch("/api/playlists", playlistPatch);
+app.delete("/api/playlists", playlistDelete);
 
 
 app.listen(3001, () => console.log(`Example app listening on port 3001!`))
