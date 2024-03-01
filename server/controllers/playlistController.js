@@ -11,6 +11,7 @@ const playlistPost = (req, res) => {
 
   playlist.name = req.body.name;
   playlist.url  = req.body.url;
+  playlist.user  = req.body.user;
 
   if (playlist.name && playlist.url) {
     playlist.save()

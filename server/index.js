@@ -12,13 +12,12 @@ app.use(bodyParser.json());
 const cors = require("cors");
 const { userPost, userGet } = require('./controllers/userController');
 const { playlistGet,  playlistPost,  playlistPatch,  playlistDelete} = require('./controllers/playlistController');
+const { childrenGet,  childrenPost,  childrenPatch,  childrenDelete} = require('./controllers/childrenController');
 app.use(cors({
   domains: '*',
   methods: "*"
 }));
 
-
-// listen to the task request
 app.get("/api/users/",userGet);
 app.post("/api/users", userPost);
 
@@ -27,5 +26,9 @@ app.post("/api/playlists", playlistPost);
 app.patch("/api/playlists", playlistPatch);
 app.delete("/api/playlists", playlistDelete);
 
+app.get("/api/childrens/",childrenGet);
+app.post("/api/childrens", childrenPost);
+app.patch("/api/childrens", childrenPatch);
+app.delete("/api/childrens", childrenDelete);
 
 app.listen(3001, () => console.log(`Example app listening on port 3001!`))
