@@ -62,8 +62,9 @@ const userPost = (req, res) => {
  */
 const userGet = async (req, res) => {
     try {
-        const { email, password } = req.body;
-        // // Verificar si se proporcionaron correo electrónico y contraseña
+        const { email, password } = req.query; // Usa req.query para obtener los parámetros de la cadena de consulta
+
+        // Verificar si se proporcionaron correo electrónico y contraseña
         if (!email || !password) {
             return res.status(400).json({ error: "Email and password are required" });
         }
@@ -76,19 +77,18 @@ const userGet = async (req, res) => {
             return res.status(404).json({ error: "User not found" });
         }
 
-        // // Verificar si la contraseña es correcta
+        // Verificar si la contraseña es correcta
         if (user.password !== password) {
             return res.status(401).json({ error: "Invalid password" });
-        }else{
-            return res.status(200), res.json(user);
         }
 
-        
-        
+        // Si el usuario y la contraseña son correctos, devolver el usuario
+        return res.status(200).json(user);
     } catch (err) {
-        res.status(500).json({ error: err.messag});
+        res.status(500).json({ error: err.message });
     }
 };
+
 module.exports = {
     userGet,
     userPost
