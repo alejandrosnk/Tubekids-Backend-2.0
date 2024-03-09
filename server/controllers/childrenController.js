@@ -111,9 +111,37 @@ const childrenDelete = (req, res) => {
     }
 };
 
+const childrenLogin = (req, res) => {
+    const { id, pin } = req.query;
+
+    if (id && pin) {
+        Children.findOne({ _id: id, pin: pin })
+            .then(children => {
+                if (!children) {
+                    res.status(404).json({ error: "Children doesn't exist" });
+                } else {
+                    res.json(children);
+                }
+            })
+            .catch(err => {
+                console.log('error while querying the children', err);
+                res.status(500).json({ error: "Internal server error" });
+            });
+    } else {
+        Children.find()
+            .then(childrens => {
+                res.json(childrens);
+            })
+            .catch(err => {
+                res.status(500).json({ error: err.message });
+            });
+    }
+};
+
 module.exports = {
     childrenGet,
     childrenPost,
     childrenPatch,
-    childrenDelete
+    childrenDelete,
+    childrenLogin
 }

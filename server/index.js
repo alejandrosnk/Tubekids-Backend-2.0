@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const cors = require("cors");
 const { userPost, userGet } = require('./controllers/userController');
 const { playlistGet,  playlistPost,  playlistPatch,  playlistDelete} = require('./controllers/playlistController');
-const { childrenGet,  childrenPost,  childrenPatch,  childrenDelete} = require('./controllers/childrenController');
+const { childrenGet,  childrenPost,  childrenPatch,  childrenDelete, childrenLogin} = require('./controllers/childrenController');
 app.use(cors({
   domains: '*',
   methods: "*"
@@ -27,6 +27,7 @@ app.patch("/api/playlists", playlistPatch);
 app.delete("/api/playlists", playlistDelete);
 
 app.get("/api/childrens/",childrenGet);
+app.get("/api/childrenLogin",childrenLogin);
 app.post("/api/childrens", childrenPost);
 app.patch("/api/childrens", childrenPatch);
 app.delete("/api/childrens", childrenDelete);
