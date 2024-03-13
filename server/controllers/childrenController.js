@@ -35,26 +35,16 @@ const childrenPost = (req, res) => {
  */
 const childrenGet = (req, res) => {
     if (req.query && req.query.id) {
-        Children.findById(req.query.id)
-            .then(children => {
-                if (!children) {
-                    res.status(404).json({ error: "Children doesn't exist" });
-                } else {
-                    res.json(children);
-                }
-            })
-            .catch(err => {
-                console.log('error while querying the children', err);
-                res.status(500).json({ error: "Internal server error" });
-            });
-    } else {
-        Children.find()
+        Children.find({ user: req.query.id })
             .then(childrens => {
                 res.json(childrens);
             })
             .catch(err => {
-                res.status(500).json({ error: err.message });
+                console.log('error while querying the child', err);
+                res.status(500).json({ error: "Internal server error" });
             });
+    } else {
+        res.status(400).json({ error: "Missing 'id' parameter in query" });
     }
 };
 

@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // check for cors
 const cors = require("cors");
 const { userPost, userGet } = require('./controllers/userController');
-const { playlistGet,  playlistPost,  playlistPatch,  playlistDelete} = require('./controllers/playlistController');
+const { videoGet,  videoPost,  videoPatch,  videoDelete} = require('./controllers/playlistController');
 const { childrenGet,  childrenPost,  childrenPatch,  childrenDelete, childrenLogin} = require('./controllers/childrenController');
 app.use(cors({
   domains: '*',
@@ -21,10 +21,10 @@ app.use(cors({
 app.get("/api/users/",userGet);
 app.post("/api/users", userPost);
 
-app.get("/api/playlists/",playlistGet);
-app.post("/api/playlists", playlistPost);
-app.patch("/api/playlists", playlistPatch);
-app.delete("/api/playlists", playlistDelete);
+app.get("/api/videos/",videoGet);
+app.post("/api/videos", videoPost);
+app.patch("/api/videos", videoPatch);
+app.delete("/api/videos", videoDelete);
 
 app.get("/api/childrens/",childrenGet);
 app.get("/api/childrenLogin",childrenLogin);
