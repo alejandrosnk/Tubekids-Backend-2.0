@@ -89,7 +89,30 @@ const userGet = async (req, res) => {
     }
 };
 
+const loginGet = async (req, res) => {
+    try {
+        const { _id, pin } = req.query; 
+        if (!_id || !pin) {
+            return res.status(400).json({ error: "Email and password are required" });
+        }
+
+        const user = await User.findOne({ _id });
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        if (user.pin !== pin) {
+            return res.status(401).json({ error: "Invalid password" });
+        }
+        return res.status(200).json(user);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 module.exports = {
     userGet,
-    userPost
+    userPost,
+    loginGet
   }
