@@ -11,9 +11,9 @@ const videoPost = (req, res) => {
 
   playlist.name = req.body.name;
   playlist.url  = req.body.url;
-  playlist.user  = req.body.user;
+  playlist.collection= req.body.collection;
 
-  if (playlist.name && playlist.url) {
+  if (playlist.name && playlist.url&&playlist.collection) {
     playlist.save()
         .then(savedPlaylist => {
             res.status(201).json(savedPlaylist);
@@ -34,7 +34,7 @@ const videoPost = (req, res) => {
  */
 const videoGet = (req, res) => { 
     if (req.query && req.query.id) {
-        Playlist.find({ user: req.query.id })
+        Playlist.find({ collection: req.query.id })
             .then(playlists => {
                 res.json(playlists);
             })

@@ -15,6 +15,7 @@ const userPost = (req, res) => {
     user.pin = req.body.pin;
     user.country = req.body.country;
     user.fechaNacimiento = req.body.fechaNacimiento;
+    user.status = req.body.status;
 
     if (
         user.name &&
@@ -22,7 +23,8 @@ const userPost = (req, res) => {
         user.email &&
         user.password &&
         user.pin &&
-        user.fechaNacimiento
+        user.fechaNacimiento&&
+        user.status
     ) {
         // Calcular la edad del usuario a partir de la fecha de nacimiento
         let birthDate = new Date(user.fechaNacimiento);
