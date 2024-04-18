@@ -31,6 +31,7 @@ const sendEmail = async (to, subject, text) => {
         return "Correo electrónico enviado correctamente.";
     } catch (error) {
         console.error("Error al enviar el correo electrónico:", error.message);
+        console.log("Correo electrónico enviado incorrectamente.", error.message);
         throw error;
     }
 };

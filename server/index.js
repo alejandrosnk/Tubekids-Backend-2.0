@@ -14,6 +14,7 @@ const sendSMS = require('./services/smsService');
 const keyGet = require('./services/keyService');
 const sendEmail = require('./services/emailService');
 const { userPost, userGet, loginGet } = require('./controllers/userController');
+const { subPost, subGet, subPatch, subDelete} = require('./controllers/subsController');
 const { collectionDelete, collectionGet, collectionPatch, collectionPost} = require('./controllers/collectionController');
 const { videoGet,  videoPost,  videoPatch,  videoDelete} = require('./controllers/playlistController');
 const { childrenGet,  childrenPost,  childrenPatch,  childrenDelete, childrenLogin} = require('./controllers/childrenController');
@@ -58,6 +59,11 @@ app.get("/api/videos/",videoGet);
 app.post("/api/videos", videoPost);
 app.patch("/api/videos", videoPatch);
 app.delete("/api/videos", videoDelete);
+
+app.get("/api/subs/",subGet);
+app.post("/api/subs", subPost);
+app.patch("/api/subs", subPatch);
+app.delete("/api/subs", subDelete);
 
 app.get("/api/collections/",collectionGet);
 app.post("/api/collections", collectionPost);
