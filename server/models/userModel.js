@@ -9,6 +9,7 @@ const user = new Schema({
   pin: {type: String},
   country: {type: String},
   fechaNacimiento: {type: Date},
+  telefono: {type: String},
   status:{type:String}
 });
 

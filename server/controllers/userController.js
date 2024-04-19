@@ -15,6 +15,7 @@ const userPost = (req, res) => {
     user.pin = req.body.pin;
     user.country = req.body.country;
     user.fechaNacimiento = req.body.fechaNacimiento;
+    user.telefono = req.body.telefono;
     user.status = req.body.status;
 
     if (
@@ -24,6 +25,7 @@ const userPost = (req, res) => {
         user.password &&
         user.pin &&
         user.fechaNacimiento&&
+        user.telefono&&
         user.status
     ) {
         // Calcular la edad del usuario a partir de la fecha de nacimiento
@@ -52,6 +54,27 @@ const userPost = (req, res) => {
     } else {
         res.status(422).json({ error: 'No valid data provided for user' });
     }
+};
+
+
+/**
+ * Creates a user
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+const activateUser = (req, res) => {
+
+    User.findByIdAndUpdate(req.query.id, { status: 'Activo' }, { new: true })
+        .then(updatedUser => {
+            if (!updatedUser) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+            res.json(updatedUser);
+        })
+        .catch(error => {
+            res.status(500).json({ error: 'Internal server error' });
+        });
 };
 
 
@@ -115,6 +138,7 @@ const loginGet = async (req, res) => {
 
 module.exports = {
     userGet,
+    activateUser,
     userPost,
     loginGet
   }

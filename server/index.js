@@ -13,7 +13,7 @@ const cors = require("cors");
 const sendSMS = require('./services/smsService');
 const keyGet = require('./services/keyService');
 const sendEmail = require('./services/emailService');
-const { userPost, userGet, loginGet } = require('./controllers/userController');
+const { userPost,activateUser, userGet, loginGet } = require('./controllers/userController');
 const { subPost, subGet, subPatch, subDelete} = require('./controllers/subsController');
 const { collectionDelete, collectionGet, collectionPatch, collectionPost} = require('./controllers/collectionController');
 const { videoGet,  videoPost,  videoPatch,  videoDelete} = require('./controllers/playlistController');
@@ -54,6 +54,7 @@ app.get("/api/key/",keyGet);
 app.get("/api/users/",userGet);
 app.get("/api/userLogin/",loginGet); 
 app.post("/api/users", userPost);
+app.patch("/api/users", activateUser);
 
 app.get("/api/videos/",videoGet);
 app.post("/api/videos", videoPost);

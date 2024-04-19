@@ -10,18 +10,18 @@ const transporter = nodeMailer.createTransport({
     }
 });
 
-const sendEmail = async (to, subject, text) => {
+const sendEmail = async (to) => {
     try {
         // Verificar datos obligatorios
-        if (!to || !subject || !text) {
+        if (!to) {
             throw new Error("Faltan datos obligatorios.");
         }
 
         const mailOptions = {
             from: "luisalejandrosln@gmail.com",
             to,
-            subject,
-            text
+            subject:"Verificación de cuenta Tubekids",
+            text: 'Ingrese a este link para verificar su cuenta: http://localhost:3000/login'
         };
 
         // Llamar a la función de envío de correo electrónico
